@@ -114,8 +114,6 @@ export default {
     ValidationObserver,
   },
 
-  props: ["sheduleName", "clientEmail"],
-  emits: ["new-schedule"],
   data: () => ({
     job_title: "",
     // phoneNumber: "",
@@ -125,12 +123,11 @@ export default {
   methods: {
     submitForm() {
       this.$refs.observer.validate();
-      this.$emit(
-        "new-schedule",
-        this.job_title,
-        this.client_name,
-        this.client_email
-      );
+      this.$store.commit("submitForm", {
+        jobTitle: this.job_title,
+        name: this.client_name,
+        email: this.client_email,
+      });
       this.clear();
     },
     clear() {
