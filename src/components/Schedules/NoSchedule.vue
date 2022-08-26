@@ -1,6 +1,6 @@
 <template>
   <div class="no-tasks">
-    <!-- <v-icon size="100" color="primary" style="left: 25%">mdi-check</v-icon> -->
+    <v-icon size="100" color="primary" style="left: 25%">mdi-check</v-icon>
     <div class="text-h5 primary--text">No job scheduled yet</div>
   </div>
 </template>
