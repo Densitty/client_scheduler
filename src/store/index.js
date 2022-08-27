@@ -31,6 +31,10 @@ export default new Vuex.Store({
         job_done: true,
       },
     ],
+    snackbar: {
+      show: false,
+      text: "",
+    },
   },
   getters: {},
   mutations: {
@@ -49,26 +53,60 @@ export default new Vuex.Store({
       scheduleToComplete.job_done = !scheduleToComplete.job_done;
     },
     deleteSchedule(state, payload) {
-      // console.log(state.schedules);
-      // console.log(payload);
       const schedulesNotDeleted = state.schedules.filter((schedule) => {
-        console.log(payload.id);
         return schedule.id !== payload.id;
       });
 
       state.schedules = schedulesNotDeleted;
     },
-    submitForm(state, payload) {
+    newSchedule(state, payload) {
       state.schedules.push({
         id: new Date().getTime(),
-        job_title: payload.jobTitle,
-        client_name: payload.name,
-        client_email: payload.email,
+        job_title: payload.schedule.jobTitle,
+        client_name: payload.schedule.name,
+        client_email: payload.schedule.email,
         due_date: "10/23/2024",
         job_done: false,
       });
+
+      // state.snackbar.text = "New job schedule successfully added";
+    },
+    showSnackbar(state, payload) {
+      let timeout = 0;
+
+      if (state.snackbar.show) {
+        state.snackbar.show = false;
+        timeout = 300;
+      }
+
+      setTimeout(() => {
+        state.snackbar.show = true;
+        state.snackbar.text = payload.text;
+      }, timeout);
+    },
+    hideSnackbar(state) {
+      state.snackbar.show = false;
     },
   },
-  actions: {},
+  actions: {
+    addSchedule(context, payload) {
+      context.commit("newSchedule", payload);
+      context.commit("showSnackbar", {
+        text: "New job schedule successfully added",
+      });
+    },
+    scheduleCompleted(context, payload) {
+      context.commit("changeJob", payload);
+    },
+    scheduleDeleted(context, payload) {
+      context.commit("deleteSchedule", payload);
+      context.commit("showSnackbar", {
+        text: "Schedule successfully removed.",
+      });
+    },
+    hideSnackbar(context) {
+      context.commit("hideSnackbar");
+    },
+  },
   modules: {},
 });

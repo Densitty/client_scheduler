@@ -123,10 +123,13 @@ export default {
   methods: {
     submitForm() {
       this.$refs.observer.validate();
-      this.$store.commit("submitForm", {
-        jobTitle: this.job_title,
-        name: this.client_name,
-        email: this.client_email,
+      this.$store.dispatch({
+        type: "addSchedule",
+        schedule: {
+          jobTitle: this.job_title,
+          name: this.client_name,
+          email: this.client_email,
+        },
       });
       this.clear();
     },

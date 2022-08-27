@@ -48,10 +48,10 @@ export default {
     },
 
     changeJob(id) {
-      this.$store.commit("changeJob", { id });
+      this.$store.dispatch("scheduleCompleted", { id });
     },
-    deleteSchedule(id) {
-      this.$store.commit("deleteSchedule", { id });
+    deleteSchedule(id, text) {
+      this.$store.dispatch("scheduleDeleted", { id, text });
     },
   },
 };
