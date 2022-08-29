@@ -24,28 +24,38 @@
       :schedule="schedule"
       @cancelSchedule="cancelScheduleDelete"
     ></delete-dialog>
+
+    <edit-dialog
+      v-if="dialogs.edit"
+      :schedule="schedule"
+      @closeEdit="closeScheduleEdit"
+    ></edit-dialog>
   </div>
 </template>
 
 <script>
 import DeleteDialog from "./Dialogs/DeleteDialog.vue";
+import EditDialog from "./Dialogs/EditDialog.vue";
 
 export default {
   inject: ["schedule"],
   components: {
     DeleteDialog,
+    EditDialog,
   },
   data() {
     return {
       dialogs: {
         delete: false,
+        edit: false,
       },
       items: [
         {
           title: "Edit",
           icon: "mdi-pencil",
-          click() {
+          click: () => {
             console.log("edit");
+            this.dialogs.edit = true;
           },
         },
         {
@@ -71,6 +81,9 @@ export default {
     },
     cancelScheduleDelete() {
       this.dialogs.delete = false;
+    },
+    closeScheduleEdit() {
+      this.dialogs.edit = false;
     },
   },
 };

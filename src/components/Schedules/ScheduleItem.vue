@@ -27,12 +27,12 @@
         </v-list-item-content>
 
         <v-list-item-action>
-          <!-- <v-btn icon>
+          <v-btn v-if="schedule.job_done" icon>
             <v-icon color="red lighten-1" @click.stop="attemptScheduleDelete()">
               mdi-delete
             </v-icon>
-          </v-btn> -->
-          <schedule-menu></schedule-menu>
+          </v-btn>
+          <schedule-menu v-else></schedule-menu>
         </v-list-item-action>
       </template>
     </v-list-item>

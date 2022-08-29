@@ -71,6 +71,15 @@ export default new Vuex.Store({
 
       // state.snackbar.text = "New job schedule successfully added";
     },
+    updateSchedule(state, payload) {
+      const updatedSchedule = state.schedules.find(
+        (schedule) => schedule.id === payload.updated.id
+      );
+
+      updatedSchedule.job_title = payload.updated.jobTitle;
+      updatedSchedule.client_name = payload.updated.clientName;
+      updatedSchedule.client_email = payload.updated.clientEmail;
+    },
     showSnackbar(state, payload) {
       let timeout = 0;
 
@@ -102,6 +111,12 @@ export default new Vuex.Store({
       context.commit("deleteSchedule", payload);
       context.commit("showSnackbar", {
         text: "Schedule successfully removed.",
+      });
+    },
+    editSchedule(context, payload) {
+      context.commit("updateSchedule", payload);
+      context.commit("showSnackbar", {
+        text: "Schedule successfully updated.",
       });
     },
     hideSnackbar(context) {
