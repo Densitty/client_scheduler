@@ -27,55 +27,46 @@
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-btn icon>
-            <v-icon color="red lighten-1" @click.stop="attemptScheduleDelete()"
-              >mdi-delete</v-icon
-            >
-          </v-btn>
+          <!-- <v-btn icon>
+            <v-icon color="red lighten-1" @click.stop="attemptScheduleDelete()">
+              mdi-delete
+            </v-icon>
+          </v-btn> -->
+          <schedule-menu></schedule-menu>
         </v-list-item-action>
       </template>
     </v-list-item>
 
     <v-divider></v-divider>
-
-    <delete-dialog
-      v-if="dialogs.delete"
-      :schedule="schedule"
-      @cancelSchedule="cancelScheduleDelete"
-    ></delete-dialog>
   </div>
 </template>
 
 <script>
-import DeleteDialog from "./Dialogs/DeleteDialog.vue";
+import ScheduleMenu from "./ScheduleMenu.vue";
 
 export default {
   name: "ScheduleItem",
   components: {
-    DeleteDialog,
+    ScheduleMenu,
   },
   data() {
-    return {
-      dialogs: {
-        delete: false,
-      },
-    };
+    return {};
   },
   props: ["schedule"],
+  provide() {
+    return {
+      schedule: this.schedule,
+    };
+  },
   methods: {
     jobDone(schedule) {
       this.$store.commit("jobDone", { schedule });
     },
-
     changeJob(id) {
       this.$store.dispatch("scheduleCompleted", { id });
     },
-
     attemptScheduleDelete() {
       this.dialogs.delete = true;
-    },
-    cancelScheduleDelete() {
-      this.dialogs.delete = false;
     },
   },
 };
