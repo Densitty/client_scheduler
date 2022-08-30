@@ -30,10 +30,17 @@
       :schedule="schedule"
       @closeEdit="closeScheduleEdit"
     ></edit-dialog>
+
+    <date-dialog
+      v-if="dialogs.dueDate"
+      :schedule="schedule"
+      @close="closeDateDialog"
+    ></date-dialog>
   </div>
 </template>
 
 <script>
+import DateDialog from "./Dialogs/DateDialog.vue";
 import DeleteDialog from "./Dialogs/DeleteDialog.vue";
 import EditDialog from "./Dialogs/EditDialog.vue";
 
@@ -42,27 +49,30 @@ export default {
   components: {
     DeleteDialog,
     EditDialog,
+    DateDialog,
   },
   data() {
     return {
       dialogs: {
         delete: false,
         edit: false,
+        dueDate: false,
       },
       items: [
         {
           title: "Edit",
           icon: "mdi-pencil",
           click: () => {
-            console.log("edit");
+            // console.log("edit");
             this.dialogs.edit = true;
           },
         },
         {
           title: "Due Date",
           icon: "mdi-calendar",
-          click: function () {
-            console.log("change date");
+          click: () => {
+            // console.log("change date");
+            this.dialogs.dueDate = true;
           },
         },
         {
@@ -84,6 +94,9 @@ export default {
     },
     closeScheduleEdit() {
       this.dialogs.edit = false;
+    },
+    closeDateDialog() {
+      this.dialogs.dueDate = false;
     },
   },
 };

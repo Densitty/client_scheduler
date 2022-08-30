@@ -18,13 +18,20 @@
           <v-list-item-title :class="{}">{{
             schedule.job_title
           }}</v-list-item-title>
-          <v-list-item-subtitle>
+          <!-- <v-list-item-subtitle>
             {{ schedule.due_date }}
-          </v-list-item-subtitle>
+          </v-list-item-subtitle> -->
           <v-list-item-subtitle>
             {{ schedule.client_email }}
           </v-list-item-subtitle>
         </v-list-item-content>
+
+        <v-list-item-action v-if="schedule.due_date">
+          <v-list-item-action-text>
+            <v-icon small>mdi-calendar</v-icon>
+            {{ niceDate }}
+          </v-list-item-action-text>
+        </v-list-item-action>
 
         <v-list-item-action>
           <v-btn v-if="schedule.job_done" icon>
@@ -42,6 +49,7 @@
 </template>
 
 <script>
+import { format } from "date-fns";
 import ScheduleMenu from "./ScheduleMenu.vue";
 
 export default {
@@ -67,6 +75,25 @@ export default {
     },
     attemptScheduleDelete() {
       this.dialogs.delete = true;
+    },
+  },
+  computed: {
+    niceDate() {
+      console.log(this.schedule.due_date);
+      // const date = intlFormat(
+      //   new Date(this.schedule.due_date),
+      //   {
+      //     weekday: "long",
+      //     year: "numeric",
+      //     month: "long",
+      //     day: "numeric",
+      //   },
+      //   {
+      //     locale: "en-NG",
+      //   }
+      // );
+      return format(new Date(this.schedule.due_date), "YYY, MMM do");
+      // return date;
     },
   },
 };

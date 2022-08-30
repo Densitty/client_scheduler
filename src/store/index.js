@@ -11,7 +11,7 @@ export default new Vuex.Store({
         job_title: "Birthday Photoshoot",
         client_name: "John Doe",
         client_email: "jdoe@mail.com",
-        due_date: "10/23/2022",
+        due_date: "2022-10-25",
         job_done: false,
       },
       {
@@ -19,7 +19,7 @@ export default new Vuex.Store({
         job_title: "Book Launcheon",
         client_name: "Susan Park",
         client_email: "jdoe@mail.com",
-        due_date: "10/23/2022",
+        due_date: "2022/10/16",
         job_done: false,
       },
       {
@@ -27,7 +27,7 @@ export default new Vuex.Store({
         job_title: "Sports Coverage",
         client_name: "Ellen Doreen",
         client_email: "elledor@mail.com",
-        due_date: "10/23/2022",
+        due_date: "2022/10/23",
         job_done: true,
       },
     ],
@@ -65,7 +65,7 @@ export default new Vuex.Store({
         job_title: payload.schedule.jobTitle,
         client_name: payload.schedule.name,
         client_email: payload.schedule.email,
-        due_date: "10/23/2024",
+        due_date: null,
         job_done: false,
       });
 
@@ -79,6 +79,13 @@ export default new Vuex.Store({
       updatedSchedule.job_title = payload.updated.jobTitle;
       updatedSchedule.client_name = payload.updated.clientName;
       updatedSchedule.client_email = payload.updated.clientEmail;
+    },
+    saveDate(state, payload) {
+      const extendedSchedule = state.schedules.find(
+        (schedule) => schedule.id === payload.schedule.id
+      );
+
+      extendedSchedule.due_date = payload.schedule.dueDate;
     },
     showSnackbar(state, payload) {
       let timeout = 0;
@@ -117,6 +124,12 @@ export default new Vuex.Store({
       context.commit("updateSchedule", payload);
       context.commit("showSnackbar", {
         text: "Schedule successfully updated.",
+      });
+    },
+    updateScheduleDueDate(context, payload) {
+      context.commit("saveDate", payload);
+      context.commit("showSnackbar", {
+        text: "Your schedule deadline has been extended.",
       });
     },
     hideSnackbar(context) {
