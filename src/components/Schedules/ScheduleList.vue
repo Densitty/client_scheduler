@@ -1,7 +1,7 @@
 <template>
   <v-list flat three-line class="pt-0">
     <div
-      v-for="schedule in $store.state.schedules"
+      v-for="schedule in filteredSchedules"
       :key="schedule.id"
       class="mb-6 mt-6"
     >
@@ -22,6 +22,11 @@ export default {
     return {};
   },
   methods: {},
+  computed: {
+    filteredSchedules() {
+      return this.$store.getters.filteredSchedules;
+    },
+  },
 };
 </script>
 

@@ -79,7 +79,6 @@ export default {
   },
   computed: {
     niceDate() {
-      console.log(this.schedule.due_date);
       // const date = intlFormat(
       //   new Date(this.schedule.due_date),
       //   {

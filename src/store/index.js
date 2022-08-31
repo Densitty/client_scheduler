@@ -35,6 +35,7 @@ export default new Vuex.Store({
       show: false,
       text: "",
     },
+    searchTerm: "",
   },
   getters: {},
   mutations: {
@@ -103,6 +104,9 @@ export default new Vuex.Store({
     hideSnackbar(state) {
       state.snackbar.show = false;
     },
+    setSearch(state, payload) {
+      state.searchTerm = payload;
+    },
   },
   actions: {
     addSchedule(context, payload) {
@@ -134,6 +138,18 @@ export default new Vuex.Store({
     },
     hideSnackbar(context) {
       context.commit("hideSnackbar");
+    },
+    setSearch(context, payload) {
+      context.commit("setSearch", payload);
+    },
+  },
+  getters: {
+    filteredSchedules(state) {
+      return state.schedules.filter((schedule) =>
+        schedule.job_title
+          .toLowerCase()
+          .includes(state.searchTerm.trim().toLowerCase())
+      );
     },
   },
   modules: {},

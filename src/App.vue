@@ -45,25 +45,19 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-container class="pa-0">
+        <v-row>
+          <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title>Client Scheduler</v-toolbar-title>
+          <v-spacer></v-spacer>
 
-      <!-- <v-app-bar-title>Title</v-app-bar-title> -->
+          <search></search>
+        </v-row>
 
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+        <v-row>
+          <v-toolbar-title class="ml-4">Client Scheduler</v-toolbar-title>
+        </v-row>
+      </v-container>
     </v-app-bar>
 
     <v-main>
@@ -75,11 +69,13 @@
 
 <script>
 import Snackbar from "./components/Global/Snackbar.vue";
+import Search from "./components/Misc/Search.vue";
 
 export default {
   name: "App",
 
   components: {
+    Search,
     Snackbar,
   },
   // data: () => ({
