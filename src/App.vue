@@ -35,13 +35,13 @@
       color="primary"
       dark
       src="./assets/schedule.jpg"
-      prominent
+      height="170"
       app
     >
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
-          gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(253,184,122,.2), rgba(253,198,199,.8)"
         ></v-img>
       </template>
 
@@ -55,7 +55,13 @@
         </v-row>
 
         <v-row>
-          <v-toolbar-title class="ml-4">Client Scheduler</v-toolbar-title>
+          <v-toolbar-title class="ml-4 text-h4"
+            >Client Scheduler</v-toolbar-title
+          >
+        </v-row>
+
+        <v-row>
+          <current-date-time></current-date-time>
         </v-row>
       </v-container>
     </v-app-bar>
@@ -69,6 +75,7 @@
 
 <script>
 import Snackbar from "./components/Global/Snackbar.vue";
+import CurrentDateTime from "./components/Misc/CurrentDateTime.vue";
 import Search from "./components/Misc/Search.vue";
 
 export default {
@@ -77,6 +84,7 @@ export default {
   components: {
     Search,
     Snackbar,
+    CurrentDateTime,
   },
   // data: () => ({
   //   drawer: null,
