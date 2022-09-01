@@ -1,19 +1,24 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
-      <v-list-item link>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Client Scheduler
-          </v-list-item-title>
+    <v-navigation-drawer v-model="drawer" mobile-breakpoint="768" app>
+      <v-img
+        height="170"
+        src="./assets/schedule.jpg"
+        class="pa-4 pt-7"
+        gradient="to top right, rgba(0,0,0,.4), rgba(0,0,0,.7)"
+      >
+        <v-avatar size="70" class="mb-2">
+          <img
+            src="https://s.gravatar.com/avatar/ace7f3697e231df38b3ca6065848520da?s=160"
+            alt="user"
+          />
+        </v-avatar>
 
-          <v-list-item-subtitle>
-            track jobs and delivery to your clients
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
+        <div class="white--text text-subtitle-1 font-weight-bold">
+          Pixel Doe
+        </div>
+        <div class="white--text text-subtitle-2">@pixel_doe</div>
+      </v-img>
 
       <v-list dense nav>
         <v-list-item v-for="item in items" :key="item.title" :to="item.to">
@@ -45,7 +50,7 @@
         ></v-img>
       </template>
 
-      <v-container class="pa-0">
+      <v-container class="pa-0 container">
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -103,3 +108,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  max-width: none !important;
+}
+</style>
