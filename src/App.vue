@@ -101,10 +101,11 @@ export default {
       items: [
         { title: "Schedules", icon: "mdi-view-dashboard", to: "/" },
         { title: "About", icon: "mdi-image", to: "/about" },
-        // { title: "Gallery", icon: "mdi-view-gallery-outline", to:"" },
-        // { title: "Contact", icon: "mdi-card-account-mail-outline", to:"" },
       ],
     };
+  },
+  mounted() {
+    this.$store.dispatch("listSchedules");
   },
 };
 </script>
