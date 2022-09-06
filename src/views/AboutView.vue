@@ -1,6 +1,6 @@
 <template>
   <div class="about pa-16">
-    <h1>Client Scheduler</h1>
+    <h1>{{ $store.state.appTitle }}</h1>
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam minima enim
       vitae, voluptatibus obcaecati repellat eligendi dicta at deleniti ut

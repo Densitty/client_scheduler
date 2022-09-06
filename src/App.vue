@@ -60,9 +60,9 @@
         </v-row>
 
         <v-row>
-          <v-toolbar-title class="ml-4 text-h4"
-            >Client Scheduler</v-toolbar-title
-          >
+          <v-toolbar-title class="ml-4 text-h4">{{
+            $store.state.appTitle
+          }}</v-toolbar-title>
         </v-row>
 
         <v-row>

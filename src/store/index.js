@@ -36,6 +36,8 @@ export default new Vuex.Store({
       text: "",
     },
     searchTerm: "",
+    appTitle: process.env.VUE_APP_TITLE,
+    sortingDone: false,
   },
   getters: {},
   mutations: {
@@ -107,6 +109,12 @@ export default new Vuex.Store({
     setSearch(state, payload) {
       state.searchTerm = payload;
     },
+    toggleSorting(state) {
+      state.sortingDone = !state.sortingDone;
+    },
+    updateSortedSchedules(state, payload) {
+      state.schedules = payload;
+    },
   },
   actions: {
     addSchedule(context, payload) {
@@ -141,6 +149,12 @@ export default new Vuex.Store({
     },
     setSearch(context, payload) {
       context.commit("setSearch", payload);
+    },
+    toggleSorting(context) {
+      context.commit("toggleSorting");
+    },
+    updateSorted(context, payload) {
+      context.commit("updateSortedSchedules", payload);
     },
   },
   getters: {

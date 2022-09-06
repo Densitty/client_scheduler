@@ -3,6 +3,7 @@
     <v-list-item
       v-on:click="changeJob(schedule.id)"
       :class="{ 'green lighten-4': schedule.job_done }"
+      :ripple="false"
     >
       <template v-slot:default="{ active }">
         <v-list-item-action>
@@ -40,6 +41,12 @@
             </v-icon>
           </v-btn>
           <schedule-menu v-else></schedule-menu>
+        </v-list-item-action>
+
+        <v-list-item-action v-if="$store.state.sortingDone">
+          <v-btn class="handle" color="primary" icon>
+            <v-icon>mdi-drag-horizontal-variant</v-icon>
+          </v-btn>
         </v-list-item-action>
       </template>
     </v-list-item>
@@ -98,4 +105,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.sortable-ghost {
+  opacity: 0;
+}
+</style>
