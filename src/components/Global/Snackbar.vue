@@ -25,4 +25,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+div:v-snack:not(.v-snac--absolute) {
+  height: 100%;
+}
+</style>

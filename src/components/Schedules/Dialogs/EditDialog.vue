@@ -131,6 +131,10 @@ export default {
       this.$refs.observer.validate();
       this.$store.dispatch("editSchedule", { updated });
       this.$emit("closeEdit");
+      // programmatically navigate to the top on updating a schedule
+      this.$vuetify.goTo(0, {
+        duration: 0,
+      });
     },
   },
   created() {

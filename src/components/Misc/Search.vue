@@ -10,6 +10,7 @@
     @focus="focus"
     @blur="focus"
     :value="$store.state.searchTerm"
+    :disabled="$store.state.sortingDone"
     v-on:input="searchSchedules($event)"
   ></v-text-field>
 </template>

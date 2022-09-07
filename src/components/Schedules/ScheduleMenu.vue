@@ -86,7 +86,10 @@ export default {
           title: "Sort",
           icon: "mdi-drag-horizontal-variant",
           click: () => {
-            this.$store.dispatch("toggleSorting");
+            // dispatch only when search bar is empty
+            if (!this.$store.state.searchTerm) {
+              this.$store.dispatch("toggleSorting");
+            }
           },
         },
       ],
